@@ -45,7 +45,7 @@ const Login = props => {
       <WhiteSpace />
       <Button
         title="Don't have an account? Sign Up"
-        onPress={() => props.navigation.navigate('SignUp')}
+        onPress={() => props.navigation.navigate('UserRegister')}
       />
       <WhiteSpace />
     </View>

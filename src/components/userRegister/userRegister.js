@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TextInput, View, Button} from 'react-native';
-import {styles} from './login.style';
+import {styles} from './userRegiter.style';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
@@ -11,14 +11,22 @@ const UserRegister = props => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [error, setError] = useState('');
+  const [name, setName] = useState('')
 
   const handleRegister = () => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, pass)
-      .then(() => props.navigation.navigate('TabBarNavigation'))
+      .then(() => props.navigation.navigate('TabBarNavigation'),
+      firebase.database().ref('users').set({
+        email,
+        pass,
+        name
+      })
+      )
       .catch(error => setError(error.message));
   };
+
 
   return (
     <View style={styles.container}>
@@ -28,6 +36,15 @@ const UserRegister = props => {
         onChangeText={email => setEmail(email)}
         value={email}
         label="Email"
+        errorMessage={error}
+        errorStyle={{color: 'red'}}
+      />
+      <WhiteSpace />
+      <Input
+        placeholder="Name"
+        onChangeText={name => setName(name)}
+        value={name}
+        label="Name"
         errorMessage={error}
         errorStyle={{color: 'red'}}
       />

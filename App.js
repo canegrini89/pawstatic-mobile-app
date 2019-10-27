@@ -7,7 +7,7 @@
  */
 
 import React, {useState} from 'react';
-import {StatusBar} from 'react-native';
+import UserRegister from './src/components/userRegister';
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import TabBarNavigation from './src/components/tabBarNavigation';
 import Loading from './src/components/loading';
@@ -18,7 +18,7 @@ const App = createAppContainer(
     {
       Loading,
       Login,
-      // Signup,
+      UserRegister,
       TabBarNavigation,
     },
     {
