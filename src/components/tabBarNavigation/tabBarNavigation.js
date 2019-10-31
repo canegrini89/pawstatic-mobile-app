@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text, StatusBar, Button} from 'react-native';
 import styles from './tabBarNavigation.style';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import Profile from '../../screens/profile'
+import { GoogleSignin } from 'react-native-google-signin';
 
 import {TabBar} from '@ant-design/react-native';
 
-const TabBarNavigation = () => {
+const TabBarNavigation = (props) => {
   const [selectedTab, setSelectedTab] = useState('Home');
+  const [currentUser, setCurrentUser] = useState({})
 
   const handleChangePage = text => {
     setSelectedTab(text);
@@ -21,6 +23,7 @@ const TabBarNavigation = () => {
       .then(() => {})
       .catch(error => error);
   };
+  console.log(currentUser)
 
   return (
     <>
