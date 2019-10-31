@@ -1,9 +1,18 @@
 import {StyleSheet} from 'react-native'
 
 const styles = StyleSheet.create({
-  header:{
-    backgroundColor: "#00BFFF",
-    height:200,
+
+  contAvatar: {
+    width: 130,
+    height: 130,
+    borderColor: "white",
+    marginBottom:10,
+    alignSelf:'center',
+    position: 'absolute',
+    marginTop:130
+  },
+  container: {
+    flex: 1
   },
   avatar: {
     width: 130,
@@ -11,10 +20,6 @@ const styles = StyleSheet.create({
     borderRadius: 63,
     borderWidth: 4,
     borderColor: "white",
-    marginBottom:10,
-    alignSelf:'center',
-    position: 'absolute',
-    marginTop:130
   },
   name:{
     fontSize:22,
@@ -42,9 +47,21 @@ const styles = StyleSheet.create({
   description:{
     fontSize:16,
     color: "#696969",
-    marginTop:10,
+    marginTop:26,
+    textAlign: 'center',
+    borderWidth: 1,
+    height: 80,
+    borderRadius: 23,
+    width: '80%',
+  },
+  text: {
+    marginTop:26,
+    height: 150,
+    width: '80%',
+    textAlign: 'center',
+  },
+  descriptionText:{
     textAlign: 'center'
   },
-
-});
+})
 export default styles

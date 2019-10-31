@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1066314148302",
+    "firebase_url": "https://pawtasticapp.firebaseio.com",
+    "project_id": "pawtasticapp",
+    "storage_bucket": "pawtasticapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066314148302:android:290d6a7b1982aa77e4a39f",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1066314148302-aogvioragbo0elbk4knthu56arrvi7rp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVyuvwUjCm_AJRVmfRbaRhhzfmF1ULZkY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1066314148302-1kitgf4tq27dd0e5idu2gnmivg3ppnlq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -17,14 +17,31 @@ const UserRegister = props => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, pass)
-      .then(() => props.navigation.navigate('TabBarNavigation'),
-      firebase.database().ref('users').set({
-        email,
-        pass,
-        name
+      .then((result) => {
+        console.log('entre:', result)
+        return result.user.updateProfile({
+          displayName: name,
+        })
+      .then(function() {
+        firebase.database().ref('users/'+ result.user.uid).set({
+          name,
+          password: pass,
+          email,
+          id: result.user.uid,
+          picture:''
+        })
+        console.log('update succes')
+      }).catch(function(error) {
+        console.log('update failed')        // An error happened.
+      });
       })
-      )
-      .catch(error => setError(error.message));
+      .catch(error => {
+        if(error) {
+          setError(error.message)
+        }else {
+          props.navigation.navigate('TabBarNavigation')
+        }
+      })
   };
 
 
@@ -59,7 +76,9 @@ const UserRegister = props => {
         errorStyle={{color: 'red'}}
       />
       <WhiteSpace />
-      <Button title="Login" onPress={() => handleRegister()} />
+      <Button title="Register" onPress={() => handleRegister()} />
+      <WhiteSpace />
+      <Button title="Go To Login" onPress={() => props.navigation.navigate('Login')} />
       <WhiteSpace />
     </View>
   );
