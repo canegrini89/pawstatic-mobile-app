@@ -4,13 +4,13 @@ import styles from './tabBarNavigation.style';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import Profile from '../../screens/profile'
+import Friends from '../../screens/friends'
 import { GoogleSignin } from 'react-native-google-signin';
 
-import {TabBar} from '@ant-design/react-native';
+import {TabBar, Icon} from '@ant-design/react-native';
 
 const TabBarNavigation = (props) => {
   const [selectedTab, setSelectedTab] = useState('Home');
-  const [currentUser, setCurrentUser] = useState({})
 
   const handleChangePage = text => {
     setSelectedTab(text);
@@ -23,7 +23,6 @@ const TabBarNavigation = (props) => {
       .then(() => {})
       .catch(error => error);
   };
-  console.log(currentUser)
 
   return (
     <>
@@ -35,6 +34,7 @@ const TabBarNavigation = (props) => {
         <TabBar.Item
           title="Home"
           key="Home"
+          icon={<Icon name="home" />}
           selected={selectedTab === 'Home'}
           data-seed="logId"
           onPress={() => handleChangePage('Home')}>
@@ -43,6 +43,7 @@ const TabBarNavigation = (props) => {
         <TabBar.Item
           title="Pets"
           key="Pets"
+          icon={<Icon name="smile" />}
           selected={selectedTab === 'Pets'}
           data-seed="logId1"
           onPress={() => handleChangePage('Pets')}>
@@ -51,6 +52,7 @@ const TabBarNavigation = (props) => {
         <TabBar.Item
           title="Plus"
           key="Plus"
+          icon={<Icon name="plus-circle" />}
           selected={selectedTab === 'Plus'}
           data-seed="logId1"
           onPress={() => handleChangePage('Plus')}>
@@ -59,15 +61,17 @@ const TabBarNavigation = (props) => {
         <TabBar.Item
           title="Friend"
           key="Friend"
+          icon={<Icon name="heart" />}
           dot
           selected={selectedTab === 'Friend'}
           onPress={() => handleChangePage('Friend')}>
-          <Text>Friend</Text>
+          <Friends/>
         </TabBar.Item>
         <TabBar.Item
           title="Profile"
           key="Profile"
           dot
+          icon={<Icon name="user" />}
           selected={selectedTab === 'Profile'}
           onPress={() => handleChangePage('Profile')}>
             <Profile />          

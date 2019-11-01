@@ -55,7 +55,6 @@ const Login = props => {
       });
   }
   
-console.log(state)
   return (
     <View style={styles.container}>
       <Text>Login</Text>

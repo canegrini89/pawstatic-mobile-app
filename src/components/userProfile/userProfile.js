@@ -23,6 +23,7 @@ import 'firebase/storage'
   const [backPicture, setBackPicture] = useState('')
   const [currentDescription, setCurrentDescription] = useState('')
   const [valueInput, setValueInput] = useState('')
+ 
 
     useEffect(() => {
       firebase.auth().onAuthStateChanged((user) => {
@@ -31,16 +32,15 @@ import 'firebase/storage'
           firebase.database().ref('users/'+ user.uid).on('value', (snap => {
             if(snap.val().description) {
               setCurrentDescription(snap.val().description)
+              setValueInput(snap.val().description)
             }
             if(snap.val().picture) {
               setPicture(snap.val().picture)
-              if(snap.val().backPicture){
-                setBackPicture(snap.val().backPicture)
-              } else {
-                setBackPicture('https://logoajes.files.wordpress.com/2014/03/fondo-celeste.jpg?w=900')
-              }
             }else {
               setPicture('https://www.travelcontinuously.com/wp-content/uploads/2018/04/empty-avatar.png')
+            }
+            if(snap.val().backPicture){
+              setBackPicture(snap.val().backPicture)
             }
           })
         )}

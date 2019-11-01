@@ -18,7 +18,6 @@ const UserRegister = props => {
       .auth()
       .createUserWithEmailAndPassword(email, pass)
       .then((result) => {
-        console.log('entre:', result)
         return result.user.updateProfile({
           displayName: name,
         })
@@ -27,10 +26,11 @@ const UserRegister = props => {
           name,
           password: pass,
           email,
+          notifications: '',
+          backPicture: 'https://logoajes.files.wordpress.com/2014/03/fondo-celeste.jpg?w=900',
           id: result.user.uid,
-          picture:''
+          picture:'https://www.travelcontinuously.com/wp-content/uploads/2018/04/empty-avatar.png',
         })
-        console.log('update succes')
       }).catch(function(error) {
         console.log('update failed')        // An error happened.
       });
