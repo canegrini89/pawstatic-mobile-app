@@ -46,7 +46,7 @@ import 'firebase/storage'
         )}
         
       })
-    }, [])
+    }, [props])
 
     const uploadImage = (uri, imageName, mime = 'image/jpg') => {
       const Blob = RNFetchBlob.polyfill.Blob

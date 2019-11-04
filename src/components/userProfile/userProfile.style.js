@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     marginTop:130
   },
   container: {
-    flex: 1
+    flex: 1,
   },
   avatar: {
     width: 130,

@@ -1,28 +1,61 @@
-import {StyleSheet, Dimensions} from 'react-native'
+import {StyleSheet} from 'react-native'
 
- export const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    marginTop:20,
-    backgroundColor:"#eeeeee"
+const styles = StyleSheet.create({
+  avatar: {
+    width: 130,
+    height: 130,
+    borderRadius: 63,
+    borderWidth: 4,
+    borderColor: "white",
+    marginBottom:10,
   },
-  header:{
-    backgroundColor: "#00CED1",
-    height:200
+  container: {
+    flex:0.7,
+    marginLeft: 20
   },
-  headerContent:{
-    padding:30,
+  name:{
+    fontSize:22,
+    color:"#FFFFFF",
+    fontWeight:'600',
+  },
+  bodyContent: {
+    flex: 1,
     alignItems: 'center',
-    flex:1,
+    padding:30,
   },
-  detailContent:{
-    top:80,
-    height:500,
-    width:Dimensions.get('screen').width - 90,
-    marginHorizontal:30,
+  textInfo:{
+    fontSize:18,
+    marginTop:20,
+    color: "#696969",
+  },
+  bodyContent:{
+    paddingTop:40,
     flexDirection: 'row',
-    position:'absolute',
-    backgroundColor: "#ffffff"
+    flexWrap: 'wrap'
+  },
+  menuBox:{
+    backgroundColor: "#DCDCDC",
+    width:100,
+    height:100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin:12,
+    shadowColor: 'black',
+    shadowOpacity: .2,
+    shadowOffset: {
+      height:2,
+      width:-2
+    },
+    elevation:4,
+    borderRadius: 30
+  },
+  icon: {
+    width:60,
+    height:60,
+  },
+  info:{
+    fontSize:22,
+    color: "#696969",
   },
   userList:{
     flex:1, 
@@ -126,35 +159,17 @@ import {StyleSheet, Dimensions} from 'react-native'
     borderRadius:30,
     backgroundColor: "grey",
   },
- /************ modals ************/
-
- header:{
-  backgroundColor: "#00BFFF",
-  height:200,
-},
-avatarModal: {
-  width: 130,
-  height: 130,
-  borderRadius: 63,
-  borderWidth: 4,
-  borderColor: "white",
-  marginBottom:10,
-  alignSelf:'center',
-  position: 'absolute',
-  marginTop:130
-},
-nameModal:{
-  fontSize:22,
-  color:"#FFFFFF",
-  fontWeight:'600',
-},
-bodyModal:{
-  marginTop:40,
-},
-bodyContentModal: {
+  
+popupOverlay: {
+  backgroundColor: "#00000057",
   flex: 1,
-  alignItems: 'center',
-  padding:30,
+  marginTop: 30,
+  marginBottom: 70
+},
+btnClose:{
+  height:20,
+  backgroundColor:'#20b2aa',
+  padding:20
 },
 popupButtons: {
   marginTop: 170,
@@ -163,48 +178,6 @@ popupButtons: {
   borderColor: "#eee",
   justifyContent:'center'
 },
+});
 
-nameModal:{
-  fontSize:28,
-  color: "#696969",
-  fontWeight: "600"
-},
-infoModal:{
-  fontSize:16,
-  color: "#00BFFF",
-  marginTop:10
-},
-descriptionModal:{
-  fontSize:16,
-  color: "#696969",
-  marginTop:10,
-  textAlign: 'center'
-},
-buttonContainerModal: {
-  marginTop:10,
-  height:45,
-  flexDirection: 'row',
-  justifyContent: 'center',
-  alignItems: 'center',
-  marginBottom:20,
-  width:250,
-  borderRadius:30,
-  backgroundColor: "#00BFFF",
-},
-popup: {
-  backgroundColor: 'white',
-  marginTop: 80,
-  marginHorizontal: 20,
-  borderRadius: 7,
-},
-popupOverlay: {
-  backgroundColor: "#00000057",
-  flex: 1,
-  marginTop: 30,
-},
-btnClose:{
-  height:20,
-  backgroundColor:'#20b2aa',
-  padding:20
-},
-}); 
+export default styles

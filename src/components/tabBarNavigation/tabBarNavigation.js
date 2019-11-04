@@ -11,11 +11,26 @@ import {TabBar, Icon} from '@ant-design/react-native';
 
 const TabBarNavigation = (props) => {
   const [selectedTab, setSelectedTab] = useState('Home');
+  const [notifications, setNotification] =useState([])
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      firebase.database().ref('users').child(user.uid + '/notifications').on('value', (snap => {
+        if (snap.val()) {
+        let toArray = []
+        Object.keys(snap.val()).forEach((item) => {
+          toArray.push(snap.val()[item]);
+        });
+        setNotification(toArray)
+      }
+      })
+    )
+    })
+  }, [])
 
   const handleChangePage = text => {
     setSelectedTab(text);
   };
-
   const logOut = () => {
     firebase
       .auth()
@@ -71,6 +86,7 @@ const TabBarNavigation = (props) => {
           title="Profile"
           key="Profile"
           dot
+          badge={notifications.length}
           icon={<Icon name="user" />}
           selected={selectedTab === 'Profile'}
           onPress={() => handleChangePage('Profile')}>

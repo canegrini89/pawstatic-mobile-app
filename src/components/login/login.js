@@ -11,7 +11,6 @@ const Login = props => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [error, setError] = useState('');
-  const [state, setState] = useState({})
 
   useEffect(() => {
     GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true })

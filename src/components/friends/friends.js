@@ -26,6 +26,7 @@ const UserList = (props) => {
   const [userPciture, setUserPicture] = useState('')
   const [modalVisible, setModal]= useState(false)
   const [userSelected, setUserSelected] = useState([])
+  const [following, setFollowing] = useState([])
 
     useEffect(() => {
       firebase.auth().onAuthStateChanged((user) => {
@@ -42,18 +43,17 @@ const UserList = (props) => {
           setData(toArray)
         }
       })
-      firebase.database().ref('users').child(currentUser.uid + '/picture').on('value', (snap) => {
+      firebase.database().ref('users').child(user.uid + '/picture').on('value', (snap) => {
         setUserPicture(snap.val())
       })
-      // firebase.database().ref('users').child(currentUser.uid + '/notifications').on('value', (snap => {
-      //   if (snap.val()) {
-      //   let toArray = []
-      //   Object.keys(snap.val()).forEach((item) => {
-      //     toArray.push(snap.val()[item]);
-      //   });
-      //   setNotification(toArray)
-      // }
-      // }))
+      firebase.database().ref('users').child(user.uid + '/following').on('value', (snap) => {
+        if(snap.val()) {
+          setFollowing(snap.val())
+        }else {
+          setFollowing([])
+        }
+      })
+
     })
     },[])
 
@@ -67,7 +67,7 @@ const UserList = (props) => {
   }
 
   const sendInvitation = (item) => {
-    firebase.database().ref('users/'+ item.id + '/notifications').push({
+    firebase.database().ref('users/'+ item.id + '/notifications/'+ currentUser.uid).set({
       from: {
         name: currentUser.displayName,
         email: currentUser.email,
@@ -81,11 +81,28 @@ const UserList = (props) => {
         picture: item.picture
       }
     })
+    firebase.database().ref('users/'+ item.id + '/followers/'+ currentUser.uid).set({
+      name: currentUser.displayName,
+      email: currentUser.email,
+      id: currentUser.uid,
+      picture: userPciture,
+    })
+    firebase.database().ref('users/'+ currentUser.uid + '/following/'+ item.id).set({
+      name:item.name,
+      email: item.email,
+      id: item.id,
+      picture: item.picture
+    })
+  }
+
+  const cancelInvitation = (item) => {
+    firebase.database().ref('users/'+ item.id + '/notifications/'+ currentUser.uid).set(null)
+    firebase.database().ref('users/'+ item.id + '/followers/'+ currentUser.uid).set(null)
+    firebase.database().ref('users/'+ currentUser.uid + '/following/'+ item.id).set(null)
   }
 
 
   const clickEventListener = (item) => {
-    console.log(item)
     setUserSelected(item)
     setModalVisible(true)
   }
@@ -93,6 +110,7 @@ const UserList = (props) => {
     setModal(visible)
   }
 
+console.log(following)
   return (
     <View style={styles.container}>
       <SearchBar 
@@ -115,9 +133,16 @@ const UserList = (props) => {
                 <Text style={styles.position}>{item.email}</Text>
               </View>
               <View style={styles.contButon}>
-                <TouchableOpacity style={styles.followButton} onPress={()=> sendInvitation(item)}>
-                  <Text style={styles.followButtonText}>Follow</Text>  
-                </TouchableOpacity>
+              {
+                following[item.id] ?
+                  <TouchableOpacity style={styles.followButtonDisabled} onPress={()=> cancelInvitation(item)}>
+                    <Text style={styles.followButtonTextDisbaled}>Followed</Text>  
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity style={styles.followButton} onPress={()=> sendInvitation(item)}>
+                    <Text style={styles.followButtonText}>Follow</Text>  
+                  </TouchableOpacity>
+              }
               </View>
             </View>
           </TouchableOpacity>
@@ -152,19 +177,6 @@ const UserList = (props) => {
               </View>
             </View>
           </View>
-                {/* <View style={styles.containerModal}>
-                  <ImageBackground  source={{uri :userSelected.backPicture}} style={{ height: 200}}>
-                  </ImageBackground >
-                  <Image style={styles.avatarModal} source={{uri: userSelected.picture}}/>
-                  <View style={styles.bodyModal}>
-                    <View style={styles.bodyContentModal}>
-                      <Text style={styles.nameModal}>{userSelected.name}</Text>
-                      <Text style={styles.infoModal}>{userSelected.email}</Text>
-                      <Text style={styles.descriptionModal}>{userSelected.description}</Text>
-                    </View>
-                  </View>
-                </View> */}
-
         </Modal>
     </View>
   );
