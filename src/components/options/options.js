@@ -39,7 +39,7 @@ const Options = (props) =>{
         setUserPicture(snap.val())
       })
     })
-  }, [])
+  }, [notificationList])
   
   const clickEventListener = () => {
     setModalVisible(true)
@@ -69,7 +69,7 @@ const Options = (props) =>{
       <View style={styles.bodyContent}>
         <TouchableOpacity style={styles.menuBox} onPress={() => clickEventListener()}>
           <Badge
-            text={2}
+            text={notificationList.length}
             size='large'
           >
             <Image style={styles.icon} source={{uri: 'https://cdn2.iconfinder.com/data/icons/icontober/64/Inkcontober_United-128.png'}}/>

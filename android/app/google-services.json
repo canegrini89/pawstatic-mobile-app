@@ -8,14 +8,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1066314148302:android:290d6a7b1982aa77e4a39f",
+        "mobilesdk_app_id": "1:1066314148302:android:d43400ea6613ddf6e4a39f",
         "android_client_info": {
-          "package_name": "com.android.application"
+          "package_name": "com.pawstatic"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1066314148302-aogvioragbo0elbk4knthu56arrvi7rp.apps.googleusercontent.com",
+          "client_id": "1066314148302-1kitgf4tq27dd0e5idu2gnmivg3ppnlq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

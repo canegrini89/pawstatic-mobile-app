@@ -12,7 +12,7 @@ import {
 import ImagePicker from 'react-native-image-picker'
 import styles from './userProfile.style'
 import firebase from 'firebase/app'
-import RNFetchBlob from 'react-native-fetch-blob'
+import RNFetchBlob from 'rn-fetch-blob'
 import 'firebase/database'
 import 'firebase/auth'
 import 'firebase/storage'

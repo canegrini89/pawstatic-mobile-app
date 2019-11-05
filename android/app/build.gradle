@@ -143,11 +143,19 @@ android {
         }
     }
     signingConfigs {
-        debug {
-            storeFile file('keystore/debug.keystore')
-            storePassword 'android'
-            keyAlias 'pawtastic'
-            keyPassword 'android'
+        // debug {
+        //     storeFile file('keystore/debug.keystore')
+        //     storePassword 'android'
+        //     keyAlias 'pawtastic'
+        //     keyPassword 'android'
+        // }
+        release {
+            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
+                storeFile file(MYAPP_UPLOAD_STORE_FILE)
+                storePassword MYAPP_UPLOAD_STORE_PASSWORD
+                keyAlias MYAPP_UPLOAD_KEY_ALIAS
+                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+            }
         }
     }
     buildTypes {
@@ -157,7 +165,8 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://facebook.github.io/react-native/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            // signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -183,6 +192,10 @@ dependencies {
     implementation project(':react-native-fs')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation 'com.google.firebase:firebase-core:+'
+    implementation ('com.google.firebase:firebase-messaging:+') {
+        force = true;
+    }
     implementation 'com.google.firebase:firebase-auth:19.0.0'
     implementation 'com.google.firebase:firebase-analytics:17.2.0'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
