@@ -11,11 +11,8 @@ import {
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker'
 import styles from './userProfile.style'
-import firebase from 'firebase/app'
+import firebase from 'react-native-firebase'
 import RNFetchBlob from 'rn-fetch-blob'
-import 'firebase/database'
-import 'firebase/auth'
-import 'firebase/storage'
 
  const UserProfile = (props) => {
   const [user, setUser] = useState({})

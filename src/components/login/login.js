@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, TextInput, View, Button} from 'react-native';
 import {styles} from './login.style';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from 'react-native-firebase';
 import {WhiteSpace} from '@ant-design/react-native';
 import {Input} from 'react-native-elements';
 import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';

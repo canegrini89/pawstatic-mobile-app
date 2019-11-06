@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1066314148302:android:d43400ea6613ddf6e4a39f",
+        "mobilesdk_app_id": "1:1066314148302:android:04b75c983d723b00e4a39f",
         "android_client_info": {
-          "package_name": "com.pawstatic"
+          "package_name": "com.pawtastic"
         }
       },
       "oauth_client": [

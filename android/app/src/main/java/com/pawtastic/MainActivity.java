@@ -1,4 +1,4 @@
-package com.pawstatic;
+package com.pawtastic;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "pawstatic";
+    return "pawtastic";
   }
 }

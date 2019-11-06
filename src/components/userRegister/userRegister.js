@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TextInput, View, Button} from 'react-native';
 import {styles} from './userRegiter.style';
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/database';
+import firebase from 'react-native-firebase';
 import {WhiteSpace} from '@ant-design/react-native';
 import {Input} from 'react-native-elements';
 

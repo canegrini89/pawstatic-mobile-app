@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Text, StatusBar, Button} from 'react-native';
 import styles from './tabBarNavigation.style';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from 'react-native-firebase';
 import Profile from '../../screens/profile'
 import Friends from '../../screens/friends'
 import { GoogleSignin } from 'react-native-google-signin';

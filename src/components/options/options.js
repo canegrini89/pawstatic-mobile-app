@@ -10,10 +10,8 @@ import {
 } from 'react-native';
 import { Badge } from '@ant-design/react-native';
 import styles from './options.styles'
-import firebase from 'firebase/app'
-import 'firebase/database'
-import 'firebase/auth'
-import 'firebase/storage'
+import firebase from 'react-native-firebase'
+
 
 const Options = (props) =>{
 

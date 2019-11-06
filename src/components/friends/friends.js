@@ -11,10 +11,8 @@ import {
 } from 'react-native';
 import { SearchBar } from 'react-native-elements'
 import {styles} from './friends.styles'
-import firebase from 'firebase/app'
-import 'firebase/database'
-import 'firebase/auth'
-import 'firebase/storage'
+import firebase from 'react-native-firebase'
+
 
 
 const UserList = (props) => {
@@ -110,7 +108,6 @@ const UserList = (props) => {
     setModal(visible)
   }
 
-console.log(following)
   return (
     <View style={styles.container}>
       <SearchBar 
