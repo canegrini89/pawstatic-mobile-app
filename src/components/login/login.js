@@ -4,29 +4,13 @@ import {styles} from './login.style';
 import firebase from 'react-native-firebase';
 import {WhiteSpace} from '@ant-design/react-native';
 import {Input} from 'react-native-elements';
-import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
+import { GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 const Login = props => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true })
-    .then(() => {
-    })
-    .catch(err => {
-        console.log('Play services error', err.code, err.message);
-    });
-
-    GoogleSignin.configure();
-
-    GoogleSignin.configure({
-      scopes: ['https://www.googleapis.com/auth/drive.readonly'], // whsat API you want to access on behalf of the user, default is email and profile
-      webClientId: '1066314148302-aogvioragbo0elbk4knthu56arrvi7rp.apps.googleusercontent.com',
-       // client ID of type WEB for your server (needed to verify user ID and offline access)
-   });
-  }, [])
 
   const handleLogin = () => {
     firebase
@@ -36,23 +20,35 @@ const Login = props => {
       .catch(error => setError(error.message));
   };
 
-  const signIn = () => {
-    GoogleSignin.signIn()
-      .then((data) => {
-        // Create a new Firebase credential with the token
-        const credential = firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken);
-        // Login with the credential
-        return firebase.auth().signInWithCredential(credential);
-      })
-      .then((user) => {
-        props.navigation.navigate('TabBarNavigation')
-      })
-      .catch((error) => {
-        const { code, message } = error;
-        console.log(error)
+  const googleLogin = async () => {
+    try {
+      // Add any configuration settings here:
+
+      await GoogleSignin.configure({
+        scopes: ['https://www.googleapis.com/auth/drive.readonly'], // whsat API you want to access on behalf of the user, default is email and profile
+        webClientId: '1066314148302-1kitgf4tq27dd0e5idu2gnmivg3ppnlq.apps.googleusercontent.com',
       });
-  }
   
+      const data = await GoogleSignin.signIn();
+  
+      // create a new firebase credential with the token
+      const credential = await firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken)
+      // login with credential
+      const currentUser = await firebase.auth().signInWithCredential(credential);
+      props.navigation.navigate('TabBarNavigation')
+      console.log(currentUser)
+      firebase.database().ref('users/'+ currentUser.user._user.uid+ '/profile').set({
+        name: currentUser.user._user.displayName,
+        email: currentUser.user._user.email,
+        id: currentUser.user._user.uid,
+        backPicture: "https://logoajes.files.wordpress.com/2014/03/fondo-celeste.jpg?w=900",
+        picture: currentUser.user._user.photoURL,
+        description: '',
+      })
+    } catch (e) {
+      console.error(e);
+    }
+  }
   return (
     <View style={styles.container}>
       <Text>Login</Text>
@@ -81,7 +77,7 @@ const Login = props => {
         style={{ width: 192, height: 48 }}
         size={GoogleSigninButton.Size.Wide}
         color={GoogleSigninButton.Color.Dark}
-        onPress={() => signIn()}
+        onPress={() => googleLogin()}
       />
       <WhiteSpace />
       <Button

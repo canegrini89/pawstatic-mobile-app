@@ -81,7 +81,7 @@ export default class Loading extends Component {
         .setTitle(notification.title)
         .setBody(notification.body)
         .android.setChannelId('fcm_FirebaseNotifiction_default_channel') // e.g. the id you chose above
-        // .android.setSmallIcon('@drawable/ic_launcher') // create this icon in Android Studio
+        .android.setSmallIcon('https://cdn1.iconfinder.com/data/icons/ecommerce-61/48/eccomerce_-_money-128.png') // create this icon in Android Studio
         .android.setColor('#000000') // you can set a color here
         .android.setPriority(firebase.notifications.Android.Priority.High);
 

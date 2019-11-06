@@ -197,6 +197,7 @@ dependencies {
     implementation project(':react-native-firebase')
     implementation "com.google.firebase:firebase-storage:17.0.0"
     implementation "com.google.firebase:firebase-database:17.0.0"
+    implementation "com.google.firebase:firebase-functions:15.0.0"
     implementation ('com.google.firebase:firebase-messaging:+') {
         force = true;
     }

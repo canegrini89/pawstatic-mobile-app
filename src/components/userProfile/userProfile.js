@@ -25,8 +25,8 @@ import RNFetchBlob from 'rn-fetch-blob'
     useEffect(() => {
       firebase.auth().onAuthStateChanged((user) => {
         if(user) {
-          setUser(user)
-          firebase.database().ref('users/'+ user.uid).on('value', (snap => {
+          setUser(user._user)
+          firebase.database().ref('users/'+ user._user.uid).on('value', (snap => {
             if(snap.val().description) {
               setCurrentDescription(snap.val().description)
               setValueInput(snap.val().description)
@@ -54,7 +54,7 @@ import RNFetchBlob from 'rn-fetch-blob'
       return new Promise((resolve, reject) => {
         const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
           let uploadBlob = null
-          const imageRef = firebase.storage().ref('profile').child(user.uid).child(imageName+user.displayName)
+          const imageRef = firebase.storage().ref('profile').child(user._user.uid).child(imageName+user.displayName)
           fs.readFile(uploadUri, 'base64')
           .then((data) => {
             return Blob.build(data, { type: `${mime};BASE64` })
@@ -69,7 +69,7 @@ import RNFetchBlob from 'rn-fetch-blob'
           })
           .then((url) => {
             resolve(url)
-             firebase.database().ref('users/'+ user.uid).update({
+             firebase.database().ref('users/'+ user.uid+ '/profile').update({
                picture : url
             })
           })

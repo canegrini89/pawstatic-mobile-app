@@ -20,14 +20,16 @@ const UserRegister = props => {
           displayName: name,
         })
       .then(function() {
-        firebase.database().ref('users/'+ result.user.uid).set({
+        firebase.database().ref('users/'+ result.user.uid+ '/profile').set({
           name,
           password: pass,
           email,
-          notifications: '',
-          backPicture: 'https://logoajes.files.wordpress.com/2014/03/fondo-celeste.jpg?w=900',
           id: result.user.uid,
+        })
+        firebase.database().ref('users/'+ result.user.uid).set({
           picture:'https://www.travelcontinuously.com/wp-content/uploads/2018/04/empty-avatar.png',
+          backPicture: 'https://logoajes.files.wordpress.com/2014/03/fondo-celeste.jpg?w=900',
+          notifications: '',
         })
       }).catch(function(error) {
         console.log('update failed')        // An error happened.
