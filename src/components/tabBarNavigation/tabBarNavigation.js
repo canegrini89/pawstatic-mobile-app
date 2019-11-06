@@ -4,6 +4,7 @@ import styles from './tabBarNavigation.style';
 import firebase from 'react-native-firebase';
 import Profile from '../../screens/profile'
 import Friends from '../../screens/friends'
+import Pets from '../../screens/pets'
 import { GoogleSignin } from 'react-native-google-signin';
 
 import {TabBar, Icon} from '@ant-design/react-native';
@@ -61,7 +62,7 @@ const TabBarNavigation = (props) => {
           selected={selectedTab === 'Pets'}
           data-seed="logId1"
           onPress={() => handleChangePage('Pets')}>
-          <Text>Koubei</Text>
+          <Pets/>
         </TabBar.Item>
         <TabBar.Item
           title="Plus"
